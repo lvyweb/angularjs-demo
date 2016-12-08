@@ -21,14 +21,23 @@
     大部分浏览器都会有一个默认请求行为：/favicon.ico
    -->
   <!-- <link rel="icon" href="../../favicon.ico"> -->
-  <title>豆瓣电影</title>
+  <title>Douban Movie</title>
   <!-- Bootstrap core CSS -->
   <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+  <link rel="shortcut icon" href="https://www.douban.com/favicon.ico" type="image/x-icon" />
   <!-- Custom styles for this template -->
   <link href="css/main.css" rel="stylesheet">
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="../node_modules/angular-route/angular-route.js"></script>
+  <script src="app.js"></script>
+  <script src="movie_list/module.js"></script>
+  <script src="movie_list/filter.js"></script>
+  <script src="common/module.js"></script>
+  <script src="movie_detail/module.js"></script>
 </head>
 
-<body>
+<body ng-app="itcast.douban">
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -44,55 +53,25 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#">Help</a></li>
         </ul>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search...">
+        <form ng-controller="SearchController" ng-submit="search(search_text)" class="navbar-form navbar-right">
+          <input type="text" ng-model="search_text" class="form-control" placeholder="Search...">
         </form>
       </div>
     </div>
   </nav>
   <div class="container-fluid">
-    <div class="row">
+    <div class="row" ng-controller="SidebarController">
       <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar">
-          <li class="active"><a href="#">正在热映</a></li>
-          <li><a href="#">即将上映</a></li>
-          <li><a href="#">Top250</a></li>
-          <li><a href="#">About</a></li>
+          <li class="active"><a href="#/in_theaters">正在热映</a></li>
+          <li><a href="#/coming_soon">即将上映</a></li>
+          <li><a href="#/top250">Top250</a></li>
         </ul>
       </div>
-      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-app="itcast.douban" ng-controller="MainController">
-        <h1 class="page-header">{{title}}</h1>
-        <div class="list-group">
-          <a href="#" class="list-group-item" ng-repeat="movie in subjects">
-            <span class="badge" class="pull-right">{{movie.rating.average}}</span>
-            <div class="media">
-              <div class="media-left" href="#">
-                <img ng-src="{{movie.images.small}}" alt="...">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">{{movie.title}}</h4>
-                <p>类型：{{movie.genres.join('、')}}</p>
-                <p>导演：{{movie.directors | getNames:'、'}}</p>
-                <p>主演：{{movie.casts | getNames:'、'}}</p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <p>总共：{{totalCount}}条记录，第2/{{totalPage}}页</p>
-        <nav>
-          <ul class="pager">
-            <li><a href="#" ng-click="go(page - 1)">上一页</a></li>
-            <li><a href="#" ng-click="go(page + 1)">下一页</a></li>
-          </ul>
-        </nav>
+      <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-view>
       </div>
     </div>
   </div>
-  <script src="../node_modules/jquery/dist/jquery.js"></script>
-  <script src="../node_modules/angular/angular.js"></script>
-  <script src="app.js"></script>
-  <script src="filter.js"></script>
-  <script src="service.js"></script>
 </body>
 
 </html>

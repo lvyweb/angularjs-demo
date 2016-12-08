@@ -1,0 +1,24 @@
+<h1 class="page-header">{{movie.title}}</h1>
+<p>评分：{{movie.rating.average}}</p>
+<p>上映年份：{{movie.year}}</p>
+<p>
+  <img ng-src="{{movie.images.large}}" alt="">
+</p>
+<p>
+  国家：{{movie.countries.join('、')}}
+</p>
+<p>
+  类别：{{movie.genres.join('、')}}
+</p>
+<p>
+  收藏数量：{{movie.collect_count}}
+</p>
+<p>
+  导演：{{movie.directors | getNames:'、'}}
+</p>
+<p>
+  演员：{{movie.casts | getNames:'、'}}
+</p>
+<p>
+  简要：{{movie.summary}}
+</p>
