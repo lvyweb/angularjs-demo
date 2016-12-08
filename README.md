@@ -5,9 +5,6 @@
 - .editorconfig
 - README.md
 - .gitignore
-- bower.json
-  + 使用 `bower init` 初始化该文件
-- .bowerrc
 - package.json
   + 使用 `npm init` 初始化该文件
 
@@ -25,6 +22,35 @@
 工具很灵活，一个人一个用法。
 
 利用各种各样的工具搭配出一套自己的工作流。
+
+## 豆瓣 API
+
+- https://api.douban.com/v2/
+- https://api.douban.com/v2/movie/in_theaters
+
+## 接口测试工具：Postman
+
+- https://www.getpostman.com/
+- Postman 是一个专门用来测试接口的一个工具，非常方便。
+
+## 分页数据
+
+需求：
+每页5条数据
+
+一共分多少页 = 天花板(总记录数大小 / 每页显示大小)
+
+查看某一页数据
+
+start 从第几条开始
+count 取几条
+
+第1页  0 5
+第2页  5 5
+第3页  10 5
+第4页  15 5
+
+(n-1) * 5
 
 ## Develop
 
